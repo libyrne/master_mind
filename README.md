@@ -27,14 +27,10 @@ for (int sc_i = 0; sc_i < n; sc_i ++){
 }
 ```
 
-    Main(): 
 
-        Ask player for length and range 
-
-        Generate secret code 
-
-        Hard code three examples as guest code 
-
-            Print results of checks 
-
-        Print secret code 
+Main(): 
+- Ask player for length and range 
+- Generate secret code 
+- Hard code three examples as guest code 
+- Print results of checks 
+- Print secret code 
