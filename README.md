@@ -13,6 +13,7 @@ For CheckIncorrect function:
 - If statement in if statement to check if value is in wrong place
 - If value is in wrong place, make the value in the guess m (out of range so it can't be checked twice) 
 
+```
 int checkIncorrect(const vector& sc, vector& guess){
 for (int sc_i = 0; sc_i < n; sc_i ++){
    for (int g_i = 0; g_i < n; g_i ++){
@@ -24,3 +25,16 @@ for (int sc_i = 0; sc_i < n; sc_i ++){
            }
       }
 }
+```
+
+    Main(): 
+
+        Ask player for length and range 
+
+        Generate secret code 
+
+        Hard code three examples as guest code 
+
+            Print results of checks 
+
+        Print secret code 
