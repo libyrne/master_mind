@@ -1,27 +1,36 @@
-#ifndef MASTERMIND_H_
-#define MASTERMIND_H_
+#ifndef CODE_H_
+#define CODE_H_
 
 #include <iostream>
 
 using namespace std;
 
-class MasterMind{
+class code{
     public:
-        MasterMind() {} // constructor
-        void setSecretCode();
+        code(int n, int m); // constructor
+        void getGuess();
         int checkCorrect();
         int checkIncorrect();
     private:
-        int length;
-        int range;
         vector<int> _secret_code;
         vector<int> _guess
 };
 
-void MasterMind::setSecretCode(int n, int m){
-
+code::code(int n, int m){
+    for (int i = 0; i < n; i++){
+        _secret_code.push_back(rand()%m);
 }
 
+void code::getGuess(vector<int> guess){
+    
+}
+    
+int code::checkCorrect(){
+    
+}
 
+int code::checkIncorrect(){
+    
+}
 
 #endif
