@@ -11,9 +11,9 @@ class MasterMind{
         void setSecretCode();
         int checkCorrect();
         int checkIncorrect();
+    private:
         int length;
         int range;
-    private:
         vector<int> _secret_code;
         vector<int> _guess
 };
