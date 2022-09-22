@@ -11,13 +11,17 @@ class code{
         int checkCorrect();
         int checkIncorrect();
     private:
-        vector<int> _secret_code;
+        vector<int> _code;
+        int _length;
+        int _range;
 };
 
 code::code(int n, int m)
 {
-    for (int i = 0; i < n; i++){
-        _secret_code.push_back(rand()%m);
+    _length = n;
+    _range = m;
+    for (int i = 0; i < _length; i++){
+        _code.push_back(rand()%_range);
 }
 
     
