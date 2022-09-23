@@ -4,7 +4,6 @@
 //
 // Description: Header file for the code class
 
-
 #ifndef CODE_H_
 #define CODE_H_
 
@@ -14,12 +13,13 @@
 
 using namespace std;
 
-class code{
+class code
+// Class used to create code objects and check functions
+{
     public:
         // constructor and deconstructor
         code(int n, int m);
-        ~code();
-
+        ~code(){};
         // code functions
         void getGuess();
         void generateSecret();
@@ -29,96 +29,113 @@ class code{
         vector<int> _sequence;
         int _length; // size of vector
         int _range; // range of vector: [0, _range -1]
-        
-};
+}; // end code class
 
-// Constructor for code object
-// attributes: "_sequence" vector v, "_length" n, and "_range" m
 code::code(int n, int m)
+// Constructor for code object
+// Attributes: "_length" n, and "_range" m
 {
-    _sequence;
     _length = n;
     _range = m;
 }
 
-// Function to generate a secret code with the code object 
-// The secret code is a "_sequence" vector of length "_length" with random values from range [0, "_range"-1]
 void code::generateSecret()
+// Function to generate a secret code with the code object 
+// Takes in a length and range
+// Creates a "_sequence" vector of length "_length" 
+// Populated with random values from [0, "_range"-1]
 {
     srand(time(0));
-    for (int i = 0; i < _length; i++){
+
+    for (int i = 0; i < _length; i++)
+    {
         int random_int = rand() % _range;
         _sequence.push_back(random_int);
     }
+    
     cout << "The secret code is: ";
-        for (int x : _sequence)
-            cout << x << " ";
-}
+    for (int x : _sequence)
+        cout << x << " ";
+} // end generateSecret
 
-
-// Function to get a guess from user
+void code::getGuess()
+// Function to get a guess code from user
+// Takes in a length and range
 // Limitations: breaks when given a char
-void code::getGuess(){
+{
     cout << "\nPlease enter a guess of " << _length << " integers from 0 to " 
          << _range-1 << " hitting enter between each integer: " << endl;
+        
         for(int i = 0 ; i < _length ; i++)
             {
                 int guess;
                 cin >> guess;
-                if (guess < _range && guess >= 0){
+                if (guess < _range && guess >= 0)
+                {
                     _sequence.push_back(guess);
                 }
-                else{
+                else
+                {
                     cout << "Guess is out of range, please reenter." << endl;
                     i--;
                 }
-            }
+            } // end for loop
+        
         cout << "The guess code is: " <<endl;
         for (int y : _sequence)
             cout << y << " ";
         cout << endl;
+} // end getGuess
 
-}
-
-// Function to check the number of matching values at matching locations 
-// between a secret code vector and a guess vector
 void code::checkCorrect(code& guess)
+// Function to check the number of matching values at matching locations
+// between a secret code vector and a guess vector
+// Takes in guess code 
 {
     int correctCount = 0;
-    for (int sc_i = 0; sc_i < _length; sc_i++){
-        if (_sequence[sc_i] == guess._sequence[sc_i]){
+
+    for (int sc_i = 0; sc_i < _length; sc_i++)
+    {
+        if (_sequence[sc_i] == guess._sequence[sc_i])
+        {
             correctCount++;
         }
     }
-    cout << "You guessed " << correctCount << " correct numbers";
-    cout << " in the correct location." << endl;
+    cout << correctCount << " correct numbers in the correct location" << endl;
 }
 
-
-//Function to check the number of matching values at the wrong locations 
-//between a secret code vector and a guess vector
 void code::checkIncorrect(code& guess)
+// Function to check the number of matching values at the wrong locations 
+// between a secret code vector and a guess vector
+// Takes in guess code
 {
     int count = 0;
-    //Loop through the secret code
-    for (int sc_i = 0; sc_i < _length; sc_i++){ 
-        //Loop through the guess at every index of the secret code
-        for (int g_i = 0; g_i < _length; g_i++){ 
-            //Check so correct ints at the correct location aren't being counted
-            if (_sequence[sc_i] == guess._sequence[sc_i]){
+
+    // Loop through the secret code
+    for (int sc_i = 0; sc_i < _length; sc_i++)
+    { 
+        // Loop through the guess code at every index of the secret code
+        for (int g_i = 0; g_i < _length; g_i++)
+        { 
+            // Check so correct ints at correct location aren't being counted
+            if (_sequence[sc_i] == guess._sequence[sc_i])
+            {
                 break;
             }
-            else if (_sequence[sc_i] == guess._sequence[g_i]){
+            else if (_sequence[sc_i] == guess._sequence[g_i])
+            {
                 count += 1;
-                //Set counted values out of range, to prevent double counting
+                // Set counted values out of range, to prevent double counting
                 guess._sequence[g_i] = _range;
                 break;
             }
-        }
-    }
-    cout << "You guessed " << count << " correct numbers in the wrong location.";
-    cout << endl << endl;
-}
+        } // end guess code for loop
+    } // end secret code for loop
 
+    cout << count << " correct numbers in the wrong location.";
+    cout << endl << endl;
+} // end checkIncorrect
+
+// end Header file
 
 #endif
