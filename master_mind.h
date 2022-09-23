@@ -1,3 +1,10 @@
+// Project #1: Mastermind part a
+// 
+// Group Members: Lisa Byrne, Alek Tunik, Kaite O'Flaherty
+//
+// Description: Header file for the code class
+
+
 #ifndef CODE_H_
 #define CODE_H_
 
@@ -9,15 +16,19 @@ using namespace std;
 
 class code{
     public:
-        code(int n, int m); // constructor
+        // constructor and deconstructor
+        code(int n, int m);
+        ~code();
+
+        // code functions
         void getGuess();
         void generateSecret();
         void checkCorrect(code& guess);
         void checkIncorrect(code& guess); 
     private:
         vector<int> _sequence;
-        int _length;
-        int _range;
+        int _length; // size of vector
+        int _range; // range of vector: [0, _range -1]
         
 };
 
