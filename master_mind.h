@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <vector>
+#include <stdlib.h>
 
 using namespace std;
 
@@ -11,8 +12,8 @@ class code{
         code(int n, int m); // constructor
         void getGuess();
         void generateSecret();
-        int checkCorrect(code guess);
-        int checkIncorrect(code guess); 
+        void checkCorrect(code& guess);
+        void checkIncorrect(code& guess); 
     private:
         vector<int> _sequence;
         int _length;
@@ -23,7 +24,7 @@ class code{
 // Constructor for a code object with a "_sequence" vector v, "_length" n, and "_range" m
 code::code(int n, int m)
 {
-    _sequence.resize(n);
+    _sequence;
     _length = n;
     _range = m;
 }
@@ -32,8 +33,10 @@ code::code(int n, int m)
 // The secret code is a "_sequence" vector of length "_length" with random values from range [0, "_range"-1]
 void code::generateSecret()
 {
+    srand(time(0));
     for (int i = 0; i < _length; i++){
-        _sequence.push_back(rand() % _range);
+        int random_int = rand() % _range;
+        _sequence.push_back(random_int);
     }
     cout << "The secret code is: ";
         for (int x : _sequence)
@@ -41,7 +44,7 @@ void code::generateSecret()
 }
 
 void code::getGuess(){
-    cout << "\nPlease enter your guess code: " << endl;
+    cout << "\nPlease enter a guess of " << _length << " numbers from 0 to " << _range-1 << " hitting enter between each number: " << endl;
         for(int i = 0 ; i < _length ; i++)
             {
                 int guess;
@@ -57,12 +60,13 @@ void code::getGuess(){
         cout << "The guess code is: " <<endl;
         for (int y : _sequence)
             cout << y << " ";
+        cout << endl;
 
 }
 
 // Function to check the number of matching values at matching locations 
 // between a secret code vector and a guess vector
-int code::checkCorrect(code guess)
+void code::checkCorrect(code& guess)
 {
     int correctCount = 0;
     for (int sc_i = 0; sc_i < _length; sc_i++){
@@ -70,23 +74,25 @@ int code::checkCorrect(code guess)
             correctCount++;
         }
     }
-    return correctCount;
+    cout << "There are " << correctCount << " correct numbers in the correct location." << endl;
 }
 
-int code::checkIncorrect(code guess)
+void code::checkIncorrect(code& guess)
 {
     int count = 0;
-    for (int sc_i = 0; sc_i < _length; sc_i++){
-        for (int g_i = 0; g_i < _length; g_i++){
-            if (g_i != sc_i){
-                if (_sequence[sc_i] == guess._sequence[g_i]){
-                    count += 1;
-                    guess._sequence[g_i] = _range; // Set counted values out of range, so they won't be double counted
-                }
+    for (int sc_i = 0; sc_i < _length; sc_i++){ // loop through the secret code 
+        for (int g_i = 0; g_i < _length; g_i++){ // loop through the guess at every index of the secret code
+            if (_sequence[sc_i] == guess._sequence[sc_i]){ // check that it's not the same index
+                break;
+            }
+            else if (_sequence[sc_i] == guess._sequence[g_i]){
+                count += 1;
+                guess._sequence[g_i] = _range; // Set counted values out of range, so they won't be double counted
+                break;
             }
         }
     }
-    return count;
+    cout << "There are " << count << " correct numbers in the wrong location." << endl << endl;
 }
 
 

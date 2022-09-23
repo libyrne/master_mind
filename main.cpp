@@ -33,18 +33,18 @@ int main()
     code guess3(n,m);
     
     guess1.getGuess();
-    guess2.getGuess();
-    guess3.getGuess();
-    
-    //Print results of checks
     sc.checkCorrect(guess1);
-    sc.checkCorrect(guess2);
-    sc.checkCorrect(guess3);
-
     sc.checkIncorrect(guess1);
-    sc.checkIncorrect(guess2);
-    sc.checkIncorrect(guess3);                                                                          
     
+    guess2.getGuess();
+    sc.checkCorrect(guess2);
+    sc.checkIncorrect(guess2);
+
+    guess3.getGuess();
+    sc.checkCorrect(guess3);
+    sc.checkIncorrect(guess3);
+
+
     return 0;
 }
 
