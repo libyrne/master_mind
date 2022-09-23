@@ -2,7 +2,9 @@
 // 
 // Group Members: Lisa Byrne, Alek Tunik, Kaite O'Flaherty
 //
-// Description: Main function for execute program
+// Description: Main function for Mastermind part a program.
+// Implements a function main() which initializes a secrete code and prints the
+// result of calling checkCorrect and checkIncorrect for 3 sample guess codes.
 
 #include "master_mind.h"
 #include <iostream>
@@ -27,9 +29,9 @@ int main()
     sc.generateSecret();
 
     // Create 3 empty code objects
-    code guess1(n,m);
-    code guess2(n,m);
-    code guess3(n,m);
+    code guess1(n, m);
+    code guess2(n, m);
+    code guess3(n, m);
     
     // Prompt user to make first guess
     // Execute check functions

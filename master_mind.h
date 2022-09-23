@@ -2,7 +2,8 @@
 // 
 // Group Members: Lisa Byrne, Alek Tunik, Kaite O'Flaherty
 //
-// Description: Header file for the code class
+// Description: Header file for the code class which stores the code as a vector.
+// Assumption: the _length and _range of a code object are both greater than 0.
 
 #ifndef CODE_H_
 #define CODE_H_
@@ -102,7 +103,7 @@ void code::checkCorrect(code& guess)
         }
     }
     cout << correctCount << " correct numbers in the correct location" << endl;
-}
+} // end checkCorrect
 
 void code::checkIncorrect(code& guess)
 // Function to check the number of matching values at the wrong locations 
