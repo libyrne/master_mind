@@ -90,32 +90,34 @@ void code::checkCorrect(code& guess)
             correctCount++;
         }
     }
-    cout << "There are " << correctCount << " correct numbers in the correct location." << endl;
+    cout << "You guessed " << correctCount << " correct numbers";
+    cout << " in the correct location." << endl;
 }
 
 
-// Function to check the number of matching values at the wrong locations 
-// between a secret code vector and a guess vector
+//Function to check the number of matching values at the wrong locations 
+//between a secret code vector and a guess vector
 void code::checkIncorrect(code& guess)
 {
     int count = 0;
-    // loop through the secret code
+    //Loop through the secret code
     for (int sc_i = 0; sc_i < _length; sc_i++){ 
-        // loop through the guess at every index of the secret code
+        //Loop through the guess at every index of the secret code
         for (int g_i = 0; g_i < _length; g_i++){ 
-            // check that we are not counting correct ints at the correct location
+            //Check so correct ints at the correct location aren't being counted
             if (_sequence[sc_i] == guess._sequence[sc_i]){
                 break;
             }
             else if (_sequence[sc_i] == guess._sequence[g_i]){
                 count += 1;
-                // Set counted values out of range, so they won't be double counted
+                //Set counted values out of range, to prevent double counting
                 guess._sequence[g_i] = _range;
                 break;
             }
         }
     }
-    cout << "There are " << count << " correct numbers in the wrong location." << endl << endl;
+    cout << "You guessed " << count << " correct numbers in the wrong location.";
+    cout << endl << endl;
 }
 
 
