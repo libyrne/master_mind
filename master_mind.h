@@ -21,7 +21,8 @@ class code{
         
 };
 
-// Constructor for a code object with a "_sequence" vector v, "_length" n, and "_range" m
+// Constructor for code object
+// attributes: "_sequence" vector v, "_length" n, and "_range" m
 code::code(int n, int m)
 {
     _sequence;
@@ -43,13 +44,17 @@ void code::generateSecret()
             cout << x << " ";
 }
 
+
+// Function to get a guess from user
+// Limitations: breaks when given a char
 void code::getGuess(){
-    cout << "\nPlease enter a guess of " << _length << " numbers from 0 to " << _range-1 << " hitting enter between each number: " << endl;
+    cout << "\nPlease enter a guess of " << _length << " integers from 0 to " 
+         << _range-1 << " hitting enter between each integer: " << endl;
         for(int i = 0 ; i < _length ; i++)
             {
                 int guess;
                 cin >> guess;
-                if (guess < _range){
+                if (guess < _range && guess >= 0){
                     _sequence.push_back(guess);
                 }
                 else{
@@ -77,17 +82,24 @@ void code::checkCorrect(code& guess)
     cout << "There are " << correctCount << " correct numbers in the correct location." << endl;
 }
 
+
+// Function to check the number of matching values at the wrong locations 
+// between a secret code vector and a guess vector
 void code::checkIncorrect(code& guess)
 {
     int count = 0;
-    for (int sc_i = 0; sc_i < _length; sc_i++){ // loop through the secret code 
-        for (int g_i = 0; g_i < _length; g_i++){ // loop through the guess at every index of the secret code
-            if (_sequence[sc_i] == guess._sequence[sc_i]){ // check that it's not the same index
+    // loop through the secret code
+    for (int sc_i = 0; sc_i < _length; sc_i++){ 
+        // loop through the guess at every index of the secret code
+        for (int g_i = 0; g_i < _length; g_i++){ 
+            // check that we are not counting correct ints at the correct location
+            if (_sequence[sc_i] == guess._sequence[sc_i]){
                 break;
             }
             else if (_sequence[sc_i] == guess._sequence[g_i]){
                 count += 1;
-                guess._sequence[g_i] = _range; // Set counted values out of range, so they won't be double counted
+                // Set counted values out of range, so they won't be double counted
+                guess._sequence[g_i] = _range;
                 break;
             }
         }
