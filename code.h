@@ -18,15 +18,20 @@ class code
 // Class used to create code objects and check functions
 {
     public:
-        // constructor and deconstructor
+        // Overloaded constructors and deconstructor
         code();
         code(int n, int m);
         ~code(){};
+
         // code functions
+        vector<int> getSequence();
+        int getLength();
+        int getRange();
         void getGuess();
         void generateSecret();
         void checkCorrect(code& guess);
         void checkIncorrect(code& guess); 
+
     private:
         vector<int> _sequence;
         int _length; // size of vector
@@ -68,11 +73,31 @@ void code::generateSecret()
         cout << x << " ";
 } // end generateSecret
 
+vector<int> code::getSequence()
+// Function to return sequence from a code object
+{
+    return _sequence;
+}
+
+int code::getLength()
+// Function to return length from a code object
+{
+    return _length;
+}
+
+int code::getRange()
+// Function to return range from a code object
+{
+    return _range;
+}
+
+
 void code::getGuess()
 // Function to get a guess code from user
 // Takes in a length and range
 // Limitations: breaks when given a char
 {
+
     cout << "\nPlease enter a guess of " << _length << " integers from 0 to " 
          << _range-1 << " hitting enter between each integer: " << endl;
         

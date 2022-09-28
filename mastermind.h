@@ -26,7 +26,7 @@ class mastermind
 
         // mastermind functions
         void printCode(code sc);
-        void humanGuess();
+        code humanGuess();
     private:
         code _code;
 }; // end mastermind class
@@ -55,12 +55,34 @@ void mastermind::printCode(code sc)
         cout << x << " ";
 } // end printCode
 
-void mastermind::humanGuess()
+code mastermind::humanGuess()
 // Function to get a guess code from user
 // 
 // Limitations: breaks when given a char
 {
-    
+    code _guess;
+    cout << "\nPlease enter a guess of " << ... << " integers from 0 to " 
+         << _range-1 << " hitting enter between each integer: " << endl;
+        
+        for(int i = 0 ; i < _length ; i++)
+            {
+                int guess;
+                cin >> guess;
+                if (guess < _range && guess >= 0)
+                {
+                    _sequence.push_back(guess);
+                }
+                else
+                {
+                    cout << "Guess is out of range, please reenter." << endl;
+                    i--;
+                }
+            } // end for loop
+        
+        cout << "The guess code is: " <<endl;
+        for (int y : _sequence)
+            cout << y << " ";
+        cout << endl;
 } // end humanGuess
 
 
