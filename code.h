@@ -1,4 +1,4 @@
-// Project #1: Mastermind part a
+// Project #1: Mastermind part b
 // 
 // Group Members: Lisa Byrne, Alek Tunik, Kaite O'Flaherty
 //
