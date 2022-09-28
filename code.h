@@ -19,6 +19,7 @@ class code
 {
     public:
         // constructor and deconstructor
+        code();
         code(int n, int m);
         ~code(){};
         // code functions
@@ -31,6 +32,14 @@ class code
         int _length; // size of vector
         int _range; // range of vector: [0, _range -1]
 }; // end code class
+
+code::code()
+// Default contructor
+// Initializes a code object with values 5 for "_length" and 10 for "_range"
+{
+    _length = 5;
+    _range = 10;
+}
 
 code::code(int n, int m)
 // Constructor for code object

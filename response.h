@@ -24,7 +24,8 @@ class response{
         // response functions
         void getResponse();
         void setResponse();
-         
+        response operator==(response a, response b); // Not sure if this right..
+        response operator<<(response a); 
     private:
        
 }; // end response class

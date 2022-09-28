@@ -11,7 +11,7 @@
 #include <iostream>
 #include <vector>
 #include <stdlib.h>
-#include <code.h>
+#include "code.h"
 
 using namespace std;
 
@@ -20,8 +20,8 @@ class mastermind
 {
     public:
         // overloaded constructors and deconstructor
-        mastermind(int n, int m);
         mastermind();
+        mastermind(int n, int m);
         ~mastermind(){};
 
         // mastermind functions
@@ -29,21 +29,22 @@ class mastermind
         void humanGuess();
     private:
         code _code;
-}; // end code class
+}; // end mastermind class
+
 
 mastermind::mastermind(int n, int m)
 // Constructor for mastermind object
 // Passed values n and m from keyboard
 // Attributes: "_length" n, and "_range" m
 {
-    
+    _code = code(n,m);
 }
 
 mastermind::mastermind()
 // Constructor for mastermind object
 // Uses default values of 5 for "_length" and 10 for "_range"
 {
-    
+    _code = code();
 }
 
 void mastermind::printCode(code sc)
