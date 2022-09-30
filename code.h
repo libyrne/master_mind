@@ -28,6 +28,7 @@ class code
         int getLength();
         int getRange();
         code getGuess();
+        void setSequence(int value);
         void generateSecret();
         int checkCorrect(code& guess); //Changed from void to return an int
         int checkIncorrect(code& guess); //Changed from void to return an int
@@ -91,6 +92,10 @@ int code::getRange()
     return _range;
 }
 
+void code::setSequence(int var)
+{
+    _sequence.push_back(var);
+}
 
 code code::getGuess()
 // Function to get a guess code from user
