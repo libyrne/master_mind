@@ -24,14 +24,11 @@ class code
         ~code(){};
 
         // code functions
-        vector<int> getSequence();
-        int getLength();
-        int getRange();
-        code getGuess();
         void setSequence(int value);
+        vector<int> getSequence();
         void generateSecret();
-        int checkCorrect(code& guess); //Changed from void to return an int
-        int checkIncorrect(code& guess); //Changed from void to return an int
+        int checkCorrect(code& guess); 
+        int checkIncorrect(code& guess);
 
     private:
         vector<int> _sequence;
@@ -55,6 +52,18 @@ code::code(int n, int m)
     _range = m;
 }
 
+void code::setSequence(int var)
+// Function to set sequence from a code object
+{
+    _sequence.push_back(var);
+}
+
+vector<int> code::getSequence()
+// Function to return sequence from a code object
+{
+    return _sequence;
+}
+
 void code::generateSecret()
 // Function to generate a secret code with the code object 
 // Takes in a length and range
@@ -69,48 +78,6 @@ void code::generateSecret()
         _sequence.push_back(random_int);
     }
 } // end generateSecret
-
-vector<int> code::getSequence()
-// Function to return sequence from a code object
-{
-    return _sequence;
-}
-
-void code::setSequence(int var)
-{
-    _sequence.push_back(var);
-}
-
-code code::getGuess()
-// Function to get a guess code from user
-// Takes in a length and range
-// Limitations: breaks when given a char
-{
-    code guessCode;
-    cout << "\nPlease enter a guess of " << _length << " integers from 0 to " 
-         << _range-1 << " hitting enter between each integer: " << endl;
-        
-    for(int i = 0 ; i < _length ; i++)
-        {
-            int guess;
-            cin >> guess;
-            if (guess < _range && guess >= 0)
-            {
-                guessCode._sequence.push_back(guess);
-            }
-            else
-            {
-                cout << "Guess is out of range, please reenter." << endl;
-                i--;
-            }
-        } // end for loop
-    
-    cout << "The guess code is: " <<endl;
-    for (int y : guessCode._sequence)
-        cout << y << " ";
-    cout << endl;
-    return guessCode;
-} // end getGuess
 
 int code::checkCorrect(code& guess)
 // Function to check the number of matching values at matching locations
