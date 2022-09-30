@@ -84,11 +84,11 @@ bool mastermind::isSolved(response& guessResponse, response& scResponse)
     return guessResponse == scResponse; //syntax is wrong but idea is right
 }
 
-void mastermind::playGame()
+void mastermind::playGame(int n, int m)
 {
-    code sc(int n, int m);
-    sc.generateSecret();
-    sc.printCode();
+    mastermind sc(n, m);
+    sc._code.generateSecret();
+    printCode(sc);
     for (int i = 0; i < 11; i++)
         {
             code guess(int n, int m);
