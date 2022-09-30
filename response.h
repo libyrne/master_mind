@@ -23,8 +23,8 @@ class response{
         ~response(){};
         
         // response functions
-        void setCorrectCount(code& guess);
-        void setIncorrectCount(code& guess);
+        void setCorrectCount(code& guess, code& sc);
+        void setIncorrectCount(code& guess, code& sc);
         int getCorrectCount();
         int getIncorrectCount();
         friend bool operator==(const response& lhs, const response& rhs); 
@@ -43,16 +43,16 @@ response::response()
     _incorrect;
 }
 
-void response::setCorrectCount(code& guess)
+void response::setCorrectCount(code& guess, code& sc)
 //Function used to 
 {
-    _correct = guess.checkCorrect(guess);
+    _correct = sc.checkCorrect(guess);
 } // end setCorrectCount
 
-void response::setIncorrectCount(code& guess)
+void response::setIncorrectCount(code& guess, code& sc)
 //Function used to 
 {
-    _incorrect = guess.checkIncorrect(guess);
+    _incorrect = sc.checkIncorrect(guess);
 } // end setIncorrectCount
 
 int response::getCorrectCount()
@@ -77,8 +77,8 @@ bool operator== (response& lhs, response& rhs)
 ostream& operator<< (ostream& ostr, const response& r)
 //
 {
-    ostr << "Number correct: " << r._correct 
-    << "Number incorrect: " << r._incorrect;
+    ostr << "Number correct: " << r._correct  << endl;
+    ostr << "Number incorrect: " << r._incorrect << endl;
     return ostr;
 } //
 

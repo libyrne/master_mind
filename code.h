@@ -68,10 +68,6 @@ void code::generateSecret()
         int random_int = rand() % _range;
         _sequence.push_back(random_int);
     }
-    
-    cout << "The secret code is: ";
-    for (int x : _sequence)
-        cout << x << " ";
 } // end generateSecret
 
 vector<int> code::getSequence()
@@ -143,6 +139,7 @@ int code::checkCorrect(code& guess)
         }
     }
     return correctCount;
+    cout << "here" << endl << endl;
 } // end checkCorrect
 
 int code::checkIncorrect(code& guess)

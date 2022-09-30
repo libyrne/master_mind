@@ -18,6 +18,6 @@ int main()
 {
     mastermind play;
     play.playGame();
-    
+
 } // end main
 

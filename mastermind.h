@@ -28,7 +28,7 @@ class mastermind
         // mastermind functions
         void printCode();
         bool isSolved(response& guessResponse);
-        response getResponse();
+        response getResponse(code& sc);
         code humanGuess(int n, int m);
         void playGame();
     private:
@@ -83,17 +83,17 @@ code mastermind::humanGuess(int n, int m)
         } // end for loop
     
     cout << "The guess code is: " <<endl;
-    for (int x : _code.getSequence())
+    for (int x : guessCode.getSequence())
         cout << x << " ";
     cout << endl;
     return guessCode;
 } // end humanGuess
 
-response mastermind::getResponse()
+response mastermind::getResponse(code& sc)
 {
     response newResponse;
-    newResponse.setCorrectCount(_code); // set correct values
-    newResponse.setIncorrectCount(_code); // set incorrect values
+    newResponse.setCorrectCount(_code, sc); // set correct values
+    newResponse.setIncorrectCount(_code, sc); // set incorrect values
     return newResponse;
 }
 
@@ -103,7 +103,7 @@ bool mastermind::isSolved(response& guessResponse)
 // check functions, then we can access these and compare with the length of
 // the secret code
 {
-    response scResponse = getResponse();
+    response scResponse = getResponse(_code);
     return guessResponse == scResponse; //syntax is wrong but idea is right
 }
 
@@ -132,7 +132,8 @@ void mastermind::playGame()
             mastermind guess(length, range);
             // initialize to code object in guess to have user input sequence
             guess._code = guess.humanGuess(length, range);
-            response guessResponse = guess.getResponse();
+            response guessResponse = guess.getResponse(sc._code);\
+            cout << guessResponse << endl;
             // check if the user guessed the code
             solved = sc.isSolved(guessResponse);
             if (solved)
