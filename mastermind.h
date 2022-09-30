@@ -121,9 +121,12 @@ void mastermind::playGame(int n, int m)
     // Prompts the user to guess the code a maximum of ten times
     for (int i = 0; i <= 10; i++)
         {
+            // create a mastermind object for a guess
             mastermind guess(n, m);
+            // initialize to code object in guess to have user input sequence
             guess._code = guess.humanGuess(n, m);
             response guessResponse = guess.getResponse();
+            // check if the user guessed the code
             solved = sc.isSolved(guessResponse);
             if (solved)
             {
