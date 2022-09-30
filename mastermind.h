@@ -12,6 +12,7 @@
 #include <vector>
 #include <stdlib.h>
 #include "code.h"
+#include "response.h"
 
 using namespace std;
 
@@ -25,10 +26,10 @@ class mastermind
         ~mastermind(){};
 
         // mastermind functions
-        void printCode(code sc);
+        void printCode(code& sc);
         code humanGuess();
-        bool isSolved();
-        response getResponse();
+        bool isSolved(response& resp);
+        response getResponse(const code);
     private:
         code _code;
 }; // end mastermind class
@@ -48,31 +49,32 @@ mastermind::mastermind()
     _code = code();
 }
 
-void mastermind::printCode(code sc)
+void mastermind::printCode(code& sc)
 // Function to print a secret code
 {
     cout << "The secret code is: ";
-    for (int x : ) // NEEDS EDIT
+    for (int x : sc.getSequence()) // NEEDS EDIT
         cout << x << " ";
 } // end printCode
 
-bool mastermind::isSolved(response &response)
+bool mastermind::isSolved(response& guessResponse, response& scResponse)
 // Function to return true if the user has solved the board
 // If the response object has attributes 'correct' and 'incorrect' from the 
 // check functions, then we can access these and compare with the length of
 // the secret code
 {
-    if response.correct = code._length & response.incorrect = 0 //syntax is wrong but idea is right
+    
+    return guessResponse == scResponse; //syntax is wrong but idea is right
 }
 
-response mastermind::getResponse(code &guess)
+response mastermind::getResponse(const code& guess)
 {
-    int x, y;
-    x = guess.getCorrectCount(); // x and y being arbitrary variables
-    y = guess.getInCorrectCount();
-    response.setCorrect(x); // set attributes of response
-    response.setIncorrect(y);
-    // somewhere a response object needs to be created with these parameters
+    response newResponse;
+    int correct = getCorrectCount(); // x and y being arbitrary variables
+    int incorrect = guess.getIncorrectCount();
+    newResponse.setCorrect(correct); // set attributes of response
+    newResponse.setIncorrect(incorrect);
+    return newResponse;
 }
 
 code mastermind::humanGuess()

@@ -29,36 +29,37 @@ class response{
         response operator==(response a, response b); // Not sure if this right..
         response operator<<(response a); 
     private:
-       
+       int _correct;
+       int _inCorrect;
 }; // end response class
 
 response::response()
 // Constructor for code object
-// Attributes: "_length" n, and "_range" m
+// Attributes: "c" n, and "_range" m
 {
     
 }
 
-response::setCorrectCount()
+void response::setCorrectCount(int x)
 {
-
+    _correct = 
 }
 
-response::setIncorrectCount()
+void response::setInCorrectCount(int x)
 {
-
+    _inCorrect = 
 }
 
-response::getCorrectCount()
+int response::getCorrectCount()
 //Not sure what to put as parameter
 {
-    return checkCorrect(guess); 
+    return _correct; 
 }
 
-response::getIncorrectCount()
+int response::getInCorrectCount()
 //Not sure what to put as parameter
 {
-    return checkIncorrect(guess);
+    return _inCorrect;
 }
 
 // end Header file
