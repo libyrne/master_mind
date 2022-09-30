@@ -27,7 +27,7 @@ class response{
         void setIncorrectCount(code& guess);
         int getCorrectCount();
         int getIncorrectCount();
-        bool operator==(const response& lhs, const response& rhs); 
+        bool operator== (response& lhs, response& rhs); 
         friend ostream& operator<<(ostream& ostr, const response& r); 
     private:
         //private data members for response class
