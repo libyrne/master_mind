@@ -27,6 +27,7 @@ class mastermind
         // mastermind functions
         void printCode(code sc);
         code humanGuess();
+        bool isSolved();
     private:
         code _code;
 }; // end mastermind class
@@ -54,6 +55,15 @@ void mastermind::printCode(code sc)
     for (int x : ) // NEEDS EDIT
         cout << x << " ";
 } // end printCode
+
+bool mastermind::isSolved(response &response)
+// Function to return true if the user has solved the board
+// If the response object has attributes 'correct' and 'incorrect' from the 
+// check functions, then we can access these and compare with the length of
+// the secret code
+{
+    if response.correct = code._length & response.incorrect = 0 
+}
 
 code mastermind::humanGuess()
 // Function to get a guess code from user
