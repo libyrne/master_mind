@@ -122,7 +122,7 @@ void mastermind::playGame(int n, int m)
     for (int i = 0; i <= 10; i++)
         {
             mastermind guess(n, m);
-            guess._code = guess.humanGuess();
+            guess._code = guess.humanGuess(n, m);
             response guessResponse = guess.getResponse();
             solved = sc.isSolved(guessResponse);
             if (solved)
