@@ -90,6 +90,7 @@ code mastermind::humanGuess(int n, int m)
 } // end humanGuess
 
 response mastermind::getResponse(code& sc)
+
 {
     response newResponse;
     newResponse.setCorrectCount(_code, sc); // set correct values
@@ -134,17 +135,20 @@ void mastermind::playGame()
             mastermind guess(length, range);
             // Initialize code object in guess to have user input sequence
             guess._code = guess.humanGuess(length, range);
-            // Generate a response object with the number of correct and 
-            // incorrect values 
+            // Generate a response object that stores that number of correct
+            // values (in correct and incorrect location) of a guess 
             response guessResponse = guess.getResponse(sc._code);
+            // Print the values stored in the guess response object
             cout << guessResponse << endl;
-            // check if the user guessed the code
+            // Check if the user guessed the code
             solved = sc.isSolved(guessResponse);
+            // Break the loop if the secret code is guessed
             if (solved)
             {
                 break;
             }
         }
+    // Print outs for end of game
     if (solved)
     {
         cout << "You win!";
