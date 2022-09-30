@@ -2,8 +2,10 @@
 // 
 // Group Members: Lisa Byrne, Alek Tunik, Kaite O'Flaherty
 //
-// Description: Header file for the mastermind class
-// Assumption:
+// Description: Header file for the mastermind class that handles the playing 
+// of the game
+// Assumption: User will enter a valid number for the length and range of the 
+// secret code. The user has a keyboard to type in these answers.
 
 #ifndef MASTERMIND_H_
 #define MASTERMIND_H_
@@ -111,13 +113,27 @@ void mastermind::playGame()
 // Creates mastermind object for secret code and iteratively creates
 // guess objects until 'solved'becomes true. 
 // If user takes more than 10 tries, game is over
+// Limitation: The user must enter a length greater than 3 and a range greater
+// than 4 to play. We added this to make the game more interesting.
 {
+    bool valid_length = false;
+    bool valid_range = false;
     // Ask player for length and range
     int length, range;
-    cout << "Please enter the length of the sequence: " << endl;
-    cin >> length;
-    cout << "Please enter the range of the sequence: " << endl;
-    cin >> range;
+    // Check if the user entered length is long enough
+    while (!valid_length){
+        cout << "Enter a length for the code (must be > 3):" << endl;
+        cin >> length;
+        if (length > 3)
+            valid_length = true;
+    }
+    // Check if the user entered range is long enough
+    while(!valid_range){
+        cout << "Enter a range for the sequence (must be > 4): " << endl;
+        cin >> range;
+        if (range > 4)
+            valid_range = true;
+    }
 
     // Boolean ttracking if the user guessed the secret code
     bool solved = false;
@@ -151,11 +167,11 @@ void mastermind::playGame()
     // Print outs for end of game
     if (solved)
     {
-        cout << "You win!";
+        cout << "You win!" << endl;
     }   
     else
     {
-        cout << "You lose, try again!";
+        cout << "You lose, try again!" << endl;
     }
 } // end play game
 

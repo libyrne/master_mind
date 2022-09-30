@@ -2,8 +2,10 @@
 // 
 // Group Members: Lisa Byrne, Alek Tunik, Kaite O'Flaherty
 //
-// Description: Header file for the response class 
-// Assumption: 
+// Description: Header file for the response class which stores the response to 
+// a guess (number correct and number incorrect)
+// Assumption: A response object will be created for the secret code and guess
+// response objects will be compared to this secret code response object
 
 #ifndef RESPONSE_H_
 #define RESPONSE_H_
