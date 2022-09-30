@@ -52,7 +52,7 @@ void mastermind::printCode(code sc)
 // Function to print a secret code
 {
     cout << "The secret code is: ";
-    for (int x : ) // NEEDS EDIT
+    for (int x : sc.getLength()) 
         cout << x << " ";
 } // end printCode
 
