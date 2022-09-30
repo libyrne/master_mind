@@ -76,18 +76,6 @@ vector<int> code::getSequence()
     return _sequence;
 }
 
-int code::getLength()
-// Function to return length from a code object
-{
-    return _length;
-}
-
-int code::getRange()
-// Function to return range from a code object
-{
-    return _range;
-}
-
 void code::setSequence(int var)
 {
     _sequence.push_back(var);

@@ -19,7 +19,7 @@ class response{
 // Class used to create response objects and ...
     public:
         // constructor and deconstructor
-        response();
+        response(){};
         ~response(){};
         
         // response functions
@@ -34,14 +34,6 @@ class response{
         int _correct, _incorrect;
        
 }; // end response class
-
-response::response()
-// Constructor for response object
-// Attributes: "_correct" n, and "_incorrect" m
-{
-    _correct;
-    _incorrect;
-}
 
 void response::setCorrectCount(code& guess, code& sc)
 //Function used to 

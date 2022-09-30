@@ -147,7 +147,7 @@ void mastermind::playGame()
     }   
     else
     {
-        cout << "You suck!";
+        cout << "You lose, try again!";
     }
 } // end play game
 
