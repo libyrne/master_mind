@@ -16,7 +16,7 @@
 using namespace std;
 
 class response{
-// Class used to create response objects and ...
+// Class used to create response objects and functions
     public:
         // constructor and deconstructor
         response(){};
@@ -36,43 +36,45 @@ class response{
 }; // end response class
 
 void response::setCorrectCount(code& guess, code& sc)
-//Function used to 
+//Function used to store values within correct response
 {
     _correct = sc.checkCorrect(guess);
-} // end setCorrectCount
+} 
 
 void response::setIncorrectCount(code& guess, code& sc)
-//Function used to 
+//Function used to store values within incorrect response
 {
     _incorrect = sc.checkIncorrect(guess);
-} // end setIncorrectCount
+} 
 
 int response::getCorrectCount()
-//Function used to 
+//Function used to access private data member, _correct
 {
     return _correct; 
-} // end getCorrectCount
+} 
 
 int response::getIncorrectCount()
-//Function used to 
+//Function used to access private data member, _incorrect
 {
     return _incorrect;
-} // end getIncorrectCount
+} 
 
 bool operator== (response& lhs, response& rhs)
-//
+//Overloaded operator to compare responses and returns true if they are equal
 {
     return lhs.getCorrectCount() == rhs.getCorrectCount()
     && lhs.getIncorrectCount() == rhs.getIncorrectCount();
-} //
+} 
 
 ostream& operator<< (ostream& ostr, const response& r)
-//
+// Overloaded operator to print a response
 {
-    ostr << "Number correct: " << r._correct  << endl;
-    ostr << "Number incorrect: " << r._incorrect << endl;
+    ostr << "Number of correct integers in the correct location: " 
+    << r._correct  << endl;
+    ostr << "Number of the correct integers in the incorrect location: " 
+    << r._incorrect << endl;
     return ostr;
-} //
+} 
 
 // end Header file
 

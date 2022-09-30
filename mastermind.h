@@ -104,7 +104,7 @@ bool mastermind::isSolved(response& guessResponse)
 // the secret code
 {
     response scResponse = getResponse(_code);
-    return guessResponse == scResponse; //syntax is wrong but idea is right
+    return guessResponse == scResponse; 
 }
 
 void mastermind::playGame()
