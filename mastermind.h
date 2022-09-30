@@ -30,7 +30,7 @@ class mastermind
         bool isSolved(response& guessResponse);
         response getResponse();
         code humanGuess(int n, int m);
-        void playGame(int n, int m);
+        void playGame();
     private:
         code _code;
 }; // end mastermind class
@@ -107,13 +107,20 @@ bool mastermind::isSolved(response& guessResponse)
     return guessResponse == scResponse; //syntax is wrong but idea is right
 }
 
-void mastermind::playGame(int n, int m)
+void mastermind::playGame()
 {
-    //
+    // Ask player for length and range
+    int length, range;
+    cout << "Please enter the length of the sequence: " << endl;
+    cin >> length;
+    cout << "Please enter the range of the sequence: " << endl;
+    cin >> range;
+
+    // Boolean to check if secret code is guessed
     bool solved = false;
     // creates a new mastermind object with a code object data member
     // initializes code object with length "n" and range "m"
-    mastermind sc(n, m);
+    mastermind sc(length, range);
     // generates a random sequence for the code object in mastermind object
     sc._code.generateSecret();
     // prints the random sequence in the code object in mastermind object
@@ -122,9 +129,9 @@ void mastermind::playGame(int n, int m)
     for (int i = 0; i <= 10; i++)
         {
             // create a mastermind object for a guess
-            mastermind guess(n, m);
+            mastermind guess(length, range);
             // initialize to code object in guess to have user input sequence
-            guess._code = guess.humanGuess(n, m);
+            guess._code = guess.humanGuess(length, range);
             response guessResponse = guess.getResponse();
             // check if the user guessed the code
             solved = sc.isSolved(guessResponse);
