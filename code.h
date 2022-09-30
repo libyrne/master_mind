@@ -27,7 +27,7 @@ class code
         vector<int> getSequence();
         int getLength();
         int getRange();
-        void getGuess();
+        code getGuess();
         void generateSecret();
         int checkCorrect(code& guess); //Changed from void to return an int
         int checkIncorrect(code& guess); //Changed from void to return an int
@@ -92,33 +92,35 @@ int code::getRange()
 }
 
 
-void code::getGuess()
+code code::getGuess()
 // Function to get a guess code from user
 // Takes in a length and range
 // Limitations: breaks when given a char
 {
+    code guessCode;
     cout << "\nPlease enter a guess of " << _length << " integers from 0 to " 
          << _range-1 << " hitting enter between each integer: " << endl;
         
-        for(int i = 0 ; i < _length ; i++)
+    for(int i = 0 ; i < _length ; i++)
+        {
+            int guess;
+            cin >> guess;
+            if (guess < _range && guess >= 0)
             {
-                int guess;
-                cin >> guess;
-                if (guess < _range && guess >= 0)
-                {
-                    _sequence.push_back(guess);
-                }
-                else
-                {
-                    cout << "Guess is out of range, please reenter." << endl;
-                    i--;
-                }
-            } // end for loop
-        
-        cout << "The guess code is: " <<endl;
-        for (int y : _sequence)
-            cout << y << " ";
-        cout << endl;
+                guessCode._sequence.push_back(guess);
+            }
+            else
+            {
+                cout << "Guess is out of range, please reenter." << endl;
+                i--;
+            }
+        } // end for loop
+    
+    cout << "The guess code is: " <<endl;
+    for (int y : guessCode._sequence)
+        cout << y << " ";
+    cout << endl;
+    return guessCode;
 } // end getGuess
 
 int code::checkCorrect(code& guess)

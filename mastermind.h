@@ -27,9 +27,9 @@ class mastermind
 
         // mastermind functions
         void printCode(code& sc);
-        code humanGuess();
-        bool isSolved(response& resp);
-        response getResponse(const code);
+        bool isSolved(response& response1, response& response2);
+        response getResponse(code& guess);
+        code humanGuess(code& sc);
     private:
         code _code;
 }; // end mastermind class
@@ -57,6 +57,23 @@ void mastermind::printCode(code& sc)
         cout << x << " ";
 } // end printCode
 
+code mastermind::humanGuess(code& sc)
+// Function to get a guess code from user
+// 
+// Limitations: breaks when given a char
+{
+    code guess = sc.getGuess();
+    return guess;
+} // end humanGuess
+
+response mastermind::getResponse(code& guess)
+{
+    response newResponse;
+    newResponse.setCorrectCount(guess); // set correct values
+    newResponse.setIncorrectCount(guess); // set incorrect values
+    return newResponse;
+}
+
 bool mastermind::isSolved(response& guessResponse, response& scResponse)
 // Function to return true if the user has solved the board
 // If the response object has attributes 'correct' and 'incorrect' from the 
@@ -66,48 +83,6 @@ bool mastermind::isSolved(response& guessResponse, response& scResponse)
     
     return guessResponse == scResponse; //syntax is wrong but idea is right
 }
-
-response mastermind::getResponse(const code& guess)
-{
-    response newResponse;
-    int correct = getCorrectCount(); // x and y being arbitrary variables
-    int incorrect = guess.getIncorrectCount();
-    newResponse.setCorrect(correct); // set attributes of response
-    newResponse.setIncorrect(incorrect);
-    return newResponse;
-}
-
-code mastermind::humanGuess()
-// Function to get a guess code from user
-// 
-// Limitations: breaks when given a char
-{
-    code _guess;
-    cout << "\nPlease enter a guess of " << ... << " integers from 0 to " 
-         << _range-1 << " hitting enter between each integer: " << endl;
-        
-        for(int i = 0 ; i < _length ; i++)
-            {
-                int guess;
-                cin >> guess;
-                if (guess < _range && guess >= 0)
-                {
-                    _sequence.push_back(guess);
-                }
-                else
-                {
-                    cout << "Guess is out of range, please reenter." << endl;
-                    i--;
-                }
-            } // end for loop
-        
-        cout << "The guess code is: " <<endl;
-        for (int y : _sequence)
-            cout << y << " ";
-        cout << endl;
-} // end humanGuess
-
-
 // end Header file
 
 #endif
