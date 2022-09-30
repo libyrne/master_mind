@@ -99,12 +99,11 @@ response mastermind::getResponse(code& sc)
 
 bool mastermind::isSolved(response& guessResponse)
 // Function to return true if the user has solved the board
-// If the response object has attributes 'correct' and 'incorrect' from the 
-// check functions, then we can access these and compare with the length of
-// the secret code
+// Generates a response object for the secret code and compares the "correct"
+// and "incorrect" values against those of the guess reponse
 {
     response scResponse = getResponse(_code);
-    return guessResponse == scResponse; 
+    return guessResponse == scResponse;
 }
 
 void mastermind::playGame()
@@ -116,23 +115,25 @@ void mastermind::playGame()
     cout << "Please enter the range of the sequence: " << endl;
     cin >> range;
 
-    // Boolean to check if secret code is guessed
+    // Boolean ttracking if the user guessed the secret code
     bool solved = false;
-    // creates a new mastermind object with a code object data member
-    // initializes code object with length "n" and range "m"
+    // Create a new mastermind object for the secret code that initializes code 
+    // object data member with values of n for "_length and m for "_range"
     mastermind sc(length, range);
-    // generates a random sequence for the code object in mastermind object
+    // Generate a random sequence for the code object in sc mastermind object
     sc._code.generateSecret();
-    // prints the random sequence in the code object in mastermind object
+    // Print the random sequence in the code object in mastermind object
     sc.printCode();
-    // Prompts the user to guess the code a maximum of ten times
+    // Prompt user to guess the secret code a maximum of ten times
     for (int i = 0; i <= 10; i++)
         {
-            // create a mastermind object for a guess
+            // Create a mastermind object for a guess
             mastermind guess(length, range);
-            // initialize to code object in guess to have user input sequence
+            // Initialize code object in guess to have user input sequence
             guess._code = guess.humanGuess(length, range);
-            response guessResponse = guess.getResponse(sc._code);\
+            // Generate a response object with the number of correct and 
+            // incorrect values 
+            response guessResponse = guess.getResponse(sc._code);
             cout << guessResponse << endl;
             // check if the user guessed the code
             solved = sc.isSolved(guessResponse);
