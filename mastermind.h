@@ -107,6 +107,9 @@ bool mastermind::isSolved(response& guessResponse)
 }
 
 void mastermind::playGame()
+// Creates mastermind object for secret code and iteratively creates
+// guess objects until 'solved'becomes true. 
+// If user takes more than 10 tries, game is over
 {
     // Ask player for length and range
     int length, range;
