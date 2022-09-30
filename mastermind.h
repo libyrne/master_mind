@@ -28,10 +28,10 @@ class mastermind
         void printCode(code sc);
         code humanGuess();
         bool isSolved();
+        response getResponse();
     private:
         code _code;
 }; // end mastermind class
-
 
 mastermind::mastermind(int n, int m)
 // Constructor for mastermind object
@@ -62,7 +62,17 @@ bool mastermind::isSolved(response &response)
 // check functions, then we can access these and compare with the length of
 // the secret code
 {
-    if response.correct = code._length & response.incorrect = 0 
+    if response.correct = code._length & response.incorrect = 0 //syntax is wrong but idea is right
+}
+
+response mastermind::getResponse(code &guess)
+{
+    int x, y;
+    x = guess.getCorrectCount(); // x and y being arbitrary variables
+    y = guess.getInCorrectCount();
+    response.setCorrect(x); // set attributes of response
+    response.setIncorrect(y);
+    // somewhere a response object needs to be created with these parameters
 }
 
 code mastermind::humanGuess()

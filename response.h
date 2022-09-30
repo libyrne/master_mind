@@ -22,8 +22,10 @@ class response{
         ~response(){};
         
         // response functions
-        void getResponse();
-        void setResponse();
+        void setCorrectCount(int x);
+        void setInCorrectCount(int x);
+        int getCorrectCount();
+        int getInCorrectCount();
         response operator==(response a, response b); // Not sure if this right..
         response operator<<(response a); 
     private:
@@ -37,13 +39,27 @@ response::response()
     
 }
 
-void response::getResponse()
-// Function to ...
-{ 
+response::setCorrectCount()
+{
 
-} // end setResponse
+}
 
+response::setIncorrectCount()
+{
 
+}
+
+response::getCorrectCount()
+//Not sure what to put as parameter
+{
+    return checkCorrect(guess); 
+}
+
+response::getIncorrectCount()
+//Not sure what to put as parameter
+{
+    return checkIncorrect(guess);
+}
 
 // end Header file
 

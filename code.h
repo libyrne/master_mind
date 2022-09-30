@@ -29,8 +29,8 @@ class code
         int getRange();
         void getGuess();
         void generateSecret();
-        void checkCorrect(code& guess);
-        void checkIncorrect(code& guess); 
+        int checkCorrect(code& guess); //Changed from void to return an int
+        int checkIncorrect(code& guess); //Changed from void to return an int
 
     private:
         vector<int> _sequence;
@@ -97,7 +97,6 @@ void code::getGuess()
 // Takes in a length and range
 // Limitations: breaks when given a char
 {
-
     cout << "\nPlease enter a guess of " << _length << " integers from 0 to " 
          << _range-1 << " hitting enter between each integer: " << endl;
         
@@ -122,7 +121,7 @@ void code::getGuess()
         cout << endl;
 } // end getGuess
 
-void code::checkCorrect(code& guess)
+int code::checkCorrect(code& guess)
 // Function to check the number of matching values at matching locations
 // between a secret code vector and a guess vector
 // Takes in guess code 
@@ -136,10 +135,10 @@ void code::checkCorrect(code& guess)
             correctCount++;
         }
     }
-    cout << correctCount << " correct numbers in the correct location" << endl;
+    return correctCount;
 } // end checkCorrect
 
-void code::checkIncorrect(code& guess)
+int code::checkIncorrect(code& guess)
 // Function to check the number of matching values at the wrong locations 
 // between a secret code vector and a guess vector
 // Takes in guess code
@@ -167,8 +166,7 @@ void code::checkIncorrect(code& guess)
         } // end guess code for loop
     } // end secret code for loop
 
-    cout << count << " correct numbers in the wrong location.";
-    cout << endl << endl;
+    return count;
 } // end checkIncorrect
 
 // end Header file
