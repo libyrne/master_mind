@@ -11,6 +11,7 @@
 #include <iostream>
 #include <vector>
 #include <stdlib.h>
+#include "code.h"
 
 using namespace std;
 
@@ -22,44 +23,64 @@ class response{
         ~response(){};
         
         // response functions
-        void setCorrectCount(int x);
-        void setInCorrectCount(int x);
+        void setCorrectCount(code& guess);
+        void setIncorrectCount(code& guess);
         int getCorrectCount();
-        int getInCorrectCount();
-        response operator==(response a, response b); // Not sure if this right..
-        response operator<<(response a); 
+        int getIncorrectCount();
+        bool operator==(const response& lhs, const response& rhs); 
+        friend ostream& operator<<(ostream& ostr, const response& r); 
     private:
+        //private data members for response class
+        int _correct, _incorrect;
        
 }; // end response class
 
 response::response()
-// Constructor for code object
-// Attributes: "_length" n, and "_range" m
+// Constructor for response object
+// Attributes: "_correct" n, and "_incorrect" m
 {
-    
+    _correct;
+    _incorrect;
 }
 
-response::setCorrectCount()
+void response::setCorrectCount(code& guess)
+//Function used to 
 {
+    _correct = guess.checkCorrect(guess);
+} // end setCorrectCount
 
-}
-
-response::setIncorrectCount()
+void response::setIncorrectCount(code& guess)
+//Function used to 
 {
+    _incorrect = guess.checkIncorrect(guess);
+} // end setIncorrectCount
 
-}
-
-response::getCorrectCount()
-//Not sure what to put as parameter
+int response::getCorrectCount()
+//Function used to 
 {
-    return checkCorrect(guess); 
-}
+    return _correct; 
+} // end getCorrectCount
 
-response::getIncorrectCount()
-//Not sure what to put as parameter
+int response::getIncorrectCount()
+//Function used to 
 {
-    return checkIncorrect(guess);
-}
+    return _incorrect;
+} // end getIncorrectCount
+
+bool operator== (response& lhs, response& rhs)
+//
+{
+    return lhs.getCorrectCount() == rhs.getCorrectCount()
+    && lhs.getIncorrectCount() == rhs.getIncorrectCount();
+} //
+
+ostream& operator<< (ostream& ostr, const response& r)
+//
+{
+    ostr << "Number correct: " << r._correct 
+    << "Number incorrect: " << r._incorrect;
+    return ostr;
+} //
 
 // end Header file
 
