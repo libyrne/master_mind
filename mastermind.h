@@ -12,6 +12,7 @@
 #include <vector>
 #include <stdlib.h>
 #include "code.h"
+#include "response.h"
 
 using namespace std;
 
@@ -25,10 +26,11 @@ class mastermind
         ~mastermind(){};
 
         // mastermind functions
-        void printCode(code sc);
-        code humanGuess();
-        bool isSolved();
+        void printCode();
+        bool isSolved(response& guessResponse);
         response getResponse();
+        code humanGuess(int n, int m);
+        void playGame(int n, int m);
     private:
         code _code;
 }; // end mastermind class
@@ -48,63 +50,98 @@ mastermind::mastermind()
     _code = code();
 }
 
-void mastermind::printCode(code sc)
+void mastermind::printCode()
 // Function to print a secret code
 {
     cout << "The secret code is: ";
-    for (int x : ) // NEEDS EDIT
+    for (int x : _code.getSequence())
         cout << x << " ";
 } // end printCode
 
-bool mastermind::isSolved(response &response)
+code mastermind::humanGuess(int n, int m)
+// Function to get a guess code from user
+// Takes in a length and range
+// Limitations: breaks when given a char
+{
+    code guessCode;
+    cout << "\nPlease enter a guess of " << n << " integers from 0 to " 
+         << m-1 << " hitting enter between each integer: " << endl;
+        
+    for(int i = 0 ; i < n ; i++)
+        {
+            int guess;
+            cin >> guess;
+            if (guess < m && guess >= 0)
+            {
+                guessCode.setSequence(guess);
+            }
+            else
+            {
+                cout << "Guess is out of range, please reenter." << endl;
+                i--;
+            }
+        } // end for loop
+    
+    cout << "The guess code is: " <<endl;
+    for (int x : _code.getSequence())
+        cout << x << " ";
+    cout << endl;
+    return guessCode;
+} // end humanGuess
+
+response mastermind::getResponse()
+{
+    response newResponse;
+    newResponse.setCorrectCount(_code); // set correct values
+    newResponse.setIncorrectCount(_code); // set incorrect values
+    return newResponse;
+}
+
+bool mastermind::isSolved(response& guessResponse)
 // Function to return true if the user has solved the board
 // If the response object has attributes 'correct' and 'incorrect' from the 
 // check functions, then we can access these and compare with the length of
 // the secret code
 {
-    if response.correct = code._length & response.incorrect = 0 //syntax is wrong but idea is right
+    response scResponse = getResponse();
+    return guessResponse == scResponse; //syntax is wrong but idea is right
 }
 
-response mastermind::getResponse(code &guess)
+void mastermind::playGame(int n, int m)
 {
-    int x, y;
-    x = guess.getCorrectCount(); // x and y being arbitrary variables
-    y = guess.getInCorrectCount();
-    response.setCorrect(x); // set attributes of response
-    response.setIncorrect(y);
-    // somewhere a response object needs to be created with these parameters
-}
-
-code mastermind::humanGuess()
-// Function to get a guess code from user
-// 
-// Limitations: breaks when given a char
-{
-    code _guess;
-    cout << "\nPlease enter a guess of " << ... << " integers from 0 to " 
-         << _range-1 << " hitting enter between each integer: " << endl;
-        
-        for(int i = 0 ; i < _length ; i++)
+    //
+    bool solved = false;
+    // creates a new mastermind object with a code object data member
+    // initializes code object with length "n" and range "m"
+    mastermind sc(n, m);
+    // generates a random sequence for the code object in mastermind object
+    sc._code.generateSecret();
+    // prints the random sequence in the code object in mastermind object
+    sc.printCode();
+    // Prompts the user to guess the code a maximum of ten times
+    for (int i = 0; i <= 10; i++)
+        {
+            // create a mastermind object for a guess
+            mastermind guess(n, m);
+            // initialize to code object in guess to have user input sequence
+            guess._code = guess.humanGuess(n, m);
+            response guessResponse = guess.getResponse();
+            // check if the user guessed the code
+            solved = sc.isSolved(guessResponse);
+            if (solved)
             {
-                int guess;
-                cin >> guess;
-                if (guess < _range && guess >= 0)
-                {
-                    _sequence.push_back(guess);
-                }
-                else
-                {
-                    cout << "Guess is out of range, please reenter." << endl;
-                    i--;
-                }
-            } // end for loop
-        
-        cout << "The guess code is: " <<endl;
-        for (int y : _sequence)
-            cout << y << " ";
-        cout << endl;
-} // end humanGuess
-
+                break;
+            }
+        }
+    if (solved)
+    {
+        cout << "You win!";
+    }   
+    else
+    {
+        cout << "You suck!";
+    }
+} // end play game
 
 // end Header file
 
