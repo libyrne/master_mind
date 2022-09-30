@@ -7,6 +7,8 @@
 // result of calling checkCorrect and checkIncorrect for 3 sample guess codes.
 
 #include "mastermind.h"
+#include "code.h"
+#include "response.h"
 #include <iostream>
 #include <vector>
 #include <stdlib.h>
@@ -14,9 +16,10 @@
 using namespace std;
 
 int main()
+//
 {
-    mastermind mastermind(int n, int m);
-    playgame();
+    mastermind game(int n, int m);
+    game.playGame(int n, int m);
     return 0;
 } // end main
 
