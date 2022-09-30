@@ -92,7 +92,7 @@ code mastermind::humanGuess(int n, int m)
 } // end humanGuess
 
 response mastermind::getResponse(code& sc)
-
+//Creates response object with correct and incorrect values as attributes
 {
     response newResponse;
     newResponse.setCorrectCount(_code, sc); // set correct values
