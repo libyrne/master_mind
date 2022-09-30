@@ -29,6 +29,7 @@ class mastermind
         code humanGuess();
         bool isSolved();
         response getResponse();
+        void playGame();
     private:
         code _code;
 }; // end mastermind class
@@ -105,7 +106,30 @@ code mastermind::humanGuess()
         cout << endl;
 } // end humanGuess
 
-
+void mastermind::playGame()
+{
+    code sc(int n, int m);
+    sc.generateSecret();
+    sc.printCode();
+    for (int i = 0; i < 11; i++)
+        {
+            code guess(int n, int m);
+            guess.getResponse();
+            response.isSolved();
+            if response.isSolved()
+            {
+                break;
+            }
+        }
+    if response.isSolved()
+    {
+        cout << "You win!";
+    }   
+    else
+    {
+        cout << "You suck!";
+    }
+} // end play game
 // end Header file
 
 #endif
